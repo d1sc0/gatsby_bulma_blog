@@ -94,8 +94,8 @@ module.exports = {
                   title: node.frontmatter.title,
                   description: node.excerpt,
                   date: node.frontmatter.date,
-                  url: site.siteMetadata.siteUrl + '/' + node.slug,
-                  guid: site.siteMetadata.siteUrl + '/' + node.slug,
+                  url: site.siteMetadata.siteUrl + '/posts/' + node.slug,
+                  guid: site.siteMetadata.siteUrl + '/posts/' + node.slug,
                 })
               })
             },
