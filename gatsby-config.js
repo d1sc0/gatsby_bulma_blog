@@ -88,38 +88,36 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allMarkdownRemark } }) => {
-              return allMarkdownRemark.nodes.map(node => {
+            serialize: ({ query: { site, allMdx } }) => {
+              return allMdx.nodes.map(node => {
                 return Object.assign({}, node.frontmatter, {
                   description: node.excerpt,
                   date: node.frontmatter.date,
-                  url: site.siteMetadata.siteUrl + node.fields.slug,
-                  guid: site.siteMetadata.siteUrl + node.fields.slug,
-                  custom_elements: [{ 'content:encoded': node.html }],
+                  url: site.siteMetadata.siteUrl + node.slug,
+                  guid: site.siteMetadata.siteUrl + node.slug,
+                  custom_elements: [{ 'content:encoded': node.body }],
                 })
               })
             },
             query: `
-              {
-                allMarkdownRemark(
-                  sort: { order: DESC, fields: [frontmatter___date] },
-                ) {
-                  nodes {
-                    excerpt
-                    html
-                    fields {
-                      slug
-                    }
-                    frontmatter {
-                      title
-                      date
-                    }
+            {
+              allMdx(sort: { order: DESC, fields: frontmatter___date }) {
+                nodes {
+                  slug
+                  id
+                  excerpt(pruneLength: 480)
+                  body
+                  frontmatter {
+                    date(formatString: "DD MMM YYYY")
+                    title
+                    description
                   }
                 }
               }
+            }
             `,
             output: '/rss.xml',
-            title: 'Gatsby Starter Blog RSS Feed',
+            title: 'Gatsby Bulma Blog RSS Feed',
           },
         ],
       },
