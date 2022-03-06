@@ -6,7 +6,7 @@
 ## 🚀 To-do list
 
 - Update site config and make sure SEO components are working - done
-- Tidy up page and template files - mostly done (single post left to do)
+- Tidy up page and template files - done
 - fix menu toggle on hamburger - done
 - Simple styling with Bulma - done
 - Create some placeholer pages and posts - done
