@@ -61,8 +61,8 @@ const PostList = ({ data, location, pageContext }) => {
 
 export default PostList
 
-export const blogListQuery = graphql`
-  query blogListQuery($skip: Int!, $limit: Int!) {
+export const postListQuery = graphql`
+  query postListQuery($skip: Int!, $limit: Int!) {
     allMdx(
       sort: { order: DESC, fields: frontmatter___date }
       limit: $limit

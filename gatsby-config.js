@@ -1,14 +1,14 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
+    siteTitle: `Gatsby Bulma Blog`,
     author: {
-      name: `Kyle Mathews`,
-      summary: `who lives and works in San Francisco building useful things.`,
+      name: `Stuart Mackenzie`,
+      summary: `Just a guy`,
     },
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
+    description: `A starter site with MDX ready (paginated) blog ready to style with Bulma.`,
+    siteUrl: `https://github.com/d1sc0/gatsby_bulma_blog`,
     social: {
-      twitter: `kylemathews`,
+      twitter: `_disco`,
     },
   },
   plugins: [

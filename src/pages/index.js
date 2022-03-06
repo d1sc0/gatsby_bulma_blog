@@ -1,88 +1,20 @@
 import * as React from 'react'
-import { Link, graphql } from 'gatsby'
-import Bio from '../components/bio'
 import Layout from '../components/layout'
 import Seo from '../components/seo'
+import { StaticImage } from 'gatsby-plugin-image'
 import '../styles.scss'
 
-const PostList = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata?.title || `Title`
-  const posts = data.allMdx.nodes
-
-  if (posts.length === 0) {
-    return (
-      <Layout location={location} title={siteTitle}>
-        <Seo title="All posts" />
-        <Bio />
-        <p>
-          No blog posts found. Add markdown posts to "content/blog" (or the
-          directory you specified for the "gatsby-source-filesystem" plugin in
-          gatsby-config.js).
-        </p>
-      </Layout>
-    )
-  }
-
+const HomePage = () => {
   return (
-    <Layout location={location} title={siteTitle}>
-      <Seo title="All posts" />
-      <Bio />
-      <ol style={{ listStyle: `none` }}>
-        {posts.map(post => {
-          const title = post.frontmatter.title || post.slug
-
-          return (
-            <li key={post.id}>
-              <article
-                className="post-list-item"
-                itemScope
-                itemType="http://schema.org/Article"
-              >
-                <header>
-                  <h2>
-                    <Link to={`/posts/${post.slug}`} itemProp="url">
-                      <span itemProp="headline">{title}</span>
-                    </Link>
-                  </h2>
-                  <small>{post.frontmatter.date}</small>
-                </header>
-                <section>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: post.frontmatter.subtitle || post.excerpt,
-                    }}
-                    itemProp="description"
-                  />
-                </section>
-              </article>
-            </li>
-          )
-        })}
-      </ol>
+    <Layout pageTitle="Home">
+      <Seo title="Home" />
+      <p>This is the home page</p>
+      <StaticImage
+        alt="Clifford, a reddish-brown pitbull, posing on a couch and looking stoically at the camera"
+        src="https://pbs.twimg.com/media/E1oMV3QVgAIr1NT?format=jpg&name=large"
+      />
     </Layout>
   )
 }
 
-export default PostList
-
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-    allMdx(sort: { order: DESC, fields: frontmatter___date }) {
-      nodes {
-        slug
-        id
-        excerpt
-        frontmatter {
-          date(formatString: "DD MMM YYYY")
-          title
-          subtitle
-        }
-      }
-    }
-  }
-`
+export default HomePage

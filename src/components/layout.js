@@ -1,37 +1,67 @@
 import * as React from 'react'
-import { Link } from 'gatsby'
+import { Link, useStaticQuery, graphql } from 'gatsby'
 import '../styles.scss'
 
-const Layout = ({ location, title, children }) => {
-  const rootPath = `${__PATH_PREFIX__}/`
-  const isRootPath = location.pathname === rootPath
-  let header
-
-  if (isRootPath) {
-    header = (
-      <h1 className="main-heading">
-        <Link to="/">{title}</Link>
-      </h1>
-    )
-  } else {
-    header = (
-      <Link className="header-link-home" to="/">
-        {title}
-      </Link>
-    )
-  }
-
+const Layout = ({ pageTitle, children }) => {
+  const data = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          siteTitle
+        }
+      }
+    }
+  `)
   return (
-    <div className="global-wrapper" data-is-root-path={isRootPath}>
-      <header className="global-header">{header}</header>
-      <main>{children}</main>
-      <footer>
-        © {new Date().getFullYear()}, Built with
-        {` `}
-        <a href="https://www.gatsbyjs.com">Gatsby</a>
+    <div>
+      <nav className="navbar" role="navigation" aria-label="main navigation">
+        <div className="container is-max-widescreen">
+          <div className="navbar-brand">
+            <Link className="navbar-item" to="/">
+              {data.site.siteMetadata.siteTitle}
+            </Link>
+            <a
+              role="button"
+              className="navbar-burger"
+              aria-label="menu"
+              aria-expanded="false"
+              data-target="navbarBasic"
+            >
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
+          </div>
+          <div id="navbarBasic" className="navbar-menu">
+            <div className="navbar-end">
+              <Link to="/posts" className="navbar-item">
+                Posts
+              </Link>
+              <Link to="/about" className="navbar-item">
+                About
+              </Link>
+              <Link to="/contact" className="navbar-item">
+                Contact
+              </Link>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <section class="section">
+        <div class="container is-max-widescreen">
+          <div className="title">{pageTitle}</div>
+          <div className="main-content">{children}</div>
+        </div>
+      </section>
+
+      <footer className="footer has-background-white">
+        <div className="content has-text-centered">
+          <strong>{data.site.siteMetadata.siteTitle}</strong> by{' '}
+          <a href="#">Stuart Mackenzie</a>.
+        </div>
       </footer>
     </div>
   )
 }
-
 export default Layout

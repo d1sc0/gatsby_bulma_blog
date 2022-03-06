@@ -65,14 +65,10 @@ const PostTemplate = ({ data, location }) => {
 export default PostTemplate
 
 export const pageQuery = graphql`
-  query BlogPostBySlug(
-    $id: String!
-    $previousPostId: String
-    $nextPostId: String
-  ) {
+  query postByID($id: String!, $previousPostId: String, $nextPostId: String) {
     site {
       siteMetadata {
-        title
+        siteTitle
       }
     }
     mdx(id: { eq: $id }) {
