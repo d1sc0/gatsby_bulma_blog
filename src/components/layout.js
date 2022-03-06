@@ -59,7 +59,6 @@ const Layout = ({ pageTitle, children }) => {
 
       <section class="section">
         <div class="container is-max-widescreen">
-          <div className="title">{pageTitle}</div>
           <div className="main-content">{children}</div>
         </div>
       </section>

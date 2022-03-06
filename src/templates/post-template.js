@@ -6,42 +6,27 @@ import Layout from '../components/layout'
 import Seo from '../components/seo'
 import '../styles.scss'
 
-const PostTemplate = ({ data, location }) => {
+const PostTemplate = ({ data }) => {
   const post = data.mdx
-  const siteTitle = data.site.siteMetadata?.title || `Title`
   const { previous, next } = data
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout>
       <Seo
         title={post.frontmatter.title}
-        description={post.frontmatter.subtitle || post.excerpt}
+        description={post.frontmatter.description || post.excerpt}
       />
-      <article
-        className="blog-post"
-        itemScope
-        itemType="http://schema.org/Article"
-      >
-        <header>
-          <h1 itemProp="headline">{post.frontmatter.title}</h1>
-          <p>{post.frontmatter.date}</p>
-        </header>
-        <MDXRenderer>{post.body}</MDXRenderer>
-        <hr />
-        <footer>
-          <Bio />
-        </footer>
-      </article>
-      <nav className="blog-post-nav">
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
+      <div className="title">{post.frontmatter.title}</div>
+      <div className="block">
+        <h1 className="is-size-2"></h1>
+        <small className="is-size-7">{post.frontmatter.date}</small>
+        <div className="content">
+          <MDXRenderer>{post.body}</MDXRenderer>
+        </div>
+      </div>
+      <Bio />
+      <nav>
+        <ul>
           <li>
             {previous && (
               <Link to={`/posts/${previous.slug}`} rel="prev">
@@ -78,7 +63,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
-        subtitle
+        description
       }
     }
     previous: mdx(id: { eq: $previousPostId }) {

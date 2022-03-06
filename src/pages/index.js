@@ -6,8 +6,9 @@ import '../styles.scss'
 
 const HomePage = () => {
   return (
-    <Layout pageTitle="Home">
+    <Layout>
       <Seo title="Home" />
+      <div className="title">Home</div>
       <p>This is the home page</p>
       <StaticImage
         alt="Clifford, a reddish-brown pitbull, posing on a couch and looking stoically at the camera"

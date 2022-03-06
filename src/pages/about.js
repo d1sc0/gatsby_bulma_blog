@@ -7,8 +7,9 @@ import '../styles.scss'
 
 const AboutPage = () => {
   return (
-    <Layout pageTitle="About">
+    <Layout>
       <Seo description="Everything you need to know ever" title="About" />
+      <div className="title">About</div>
       <p>About page</p>
       <StaticImage
         alt="Cute dog smiling with his tongue out whilst being petted"

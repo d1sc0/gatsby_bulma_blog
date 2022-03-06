@@ -1,7 +1,8 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
+import Seo from '../components/seo'
 import Layout from '../components/layout'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
+//import { MDXRenderer } from 'gatsby-plugin-mdx'
 import '../styles.scss'
 
 const PostList = ({ data, pageContext }) => {
@@ -13,11 +14,13 @@ const PostList = ({ data, pageContext }) => {
   const nextPage = (currentPage + 1).toString()
 
   return (
-    <Layout pageTitle="Posts">
+    <Layout>
+      <Seo title="Posts" />
+      <div className="title">Posts</div>
       {posts.map(post => {
         const title = post.frontmatter.title || post.slug
         return (
-          <div className="box" key={post.id}>
+          <div className="block" key={post.id}>
             <h2 className="is-size-4">
               <Link to={`/posts/${post.slug}`}>{title}</Link>
             </h2>
@@ -77,7 +80,7 @@ export const postListQuery = graphql`
         frontmatter {
           date(formatString: "DD MMM YYYY")
           title
-          subtitle
+          description
         }
       }
     }
