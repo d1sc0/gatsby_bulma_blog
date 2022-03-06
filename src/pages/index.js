@@ -8,7 +8,7 @@ const HomePage = () => {
   return (
     <Layout>
       <Seo title="Home" />
-      <div className="title">Home</div>
+      <h1 className="title is-size-2">Home</h1>
       <p>This is the home page</p>
       <StaticImage
         alt="Clifford, a reddish-brown pitbull, posing on a couch and looking stoically at the camera"

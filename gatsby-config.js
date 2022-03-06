@@ -3,7 +3,7 @@ module.exports = {
     siteTitle: `Gatsby Bulma Blog`,
     author: {
       name: `Stuart Mackenzie`,
-      summary: `Just a guy`,
+      summary: `Stuart is an Executive Director and Coach at FutureGov (Becoming TPXimpact). Stuart is also known for being a father, husband, runner, photography nerd, dog owner and exotic disco dancer. He hates writing about himself in the third person!`,
     },
     description: `A starter site with MDX ready (paginated) blog ready to style with Bulma.`,
     siteUrl: `https://github.com/d1sc0/gatsby_bulma_blog`,

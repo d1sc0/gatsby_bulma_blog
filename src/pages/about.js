@@ -9,7 +9,7 @@ const AboutPage = () => {
   return (
     <Layout>
       <Seo description="Everything you need to know ever" title="About" />
-      <div className="title">About</div>
+      <h1 className="title is-size-2">About</h1>
       <p>About page</p>
       <StaticImage
         alt="Cute dog smiling with his tongue out whilst being petted"

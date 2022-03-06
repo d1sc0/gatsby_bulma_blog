@@ -7,7 +7,7 @@ const NotFoundPage = () => {
   return (
     <Layout>
       <Seo title="404: Not Found" />
-      <div className="title">4oh4!</div>
+      <h1 className="title is-size-2">4 oh 4!s</h1>
       <p>uh-oh something has gone a little bit wrong!</p>
     </Layout>
   )

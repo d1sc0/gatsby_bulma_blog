@@ -5,9 +5,9 @@
 
 ## 🚀 To-do list
 
-- Update site config and make sure SEO components are working -done
+- Update site config and make sure SEO components are working - done
 - Tidy up page and template files - mostly done (single post left to do)
 - fix menu toggle on hamburger - done
-- Start simple styling with Bulma - done
-- Create some placeholer pages and posts - needs updating
-- Maybe think about customising ready for podcasts (generate xml feed using gatsby-feed plugin in gatsby-config.js)
+- Simple styling with Bulma - done
+- Create some placeholer pages and posts - done (need to add some images and videos to posts)
+- Check feeds rss etc on build

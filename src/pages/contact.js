@@ -8,7 +8,7 @@ const ContactPage = () => {
   return (
     <Layout>
       <Seo description="How to get in touch with us" title="Contact" />
-      <div className="title">Contact</div>
+      <h1 className="title is-size-2">Contact</h1>
       <p>The contact page content</p>
     </Layout>
   )
