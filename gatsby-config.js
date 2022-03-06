@@ -6,7 +6,7 @@ module.exports = {
       summary: `Stuart is an Executive Director and Coach at FutureGov (Becoming TPXimpact). Stuart is also known for being a father, husband, runner, photography nerd, dog owner and exotic disco dancer. He hates writing about himself in the third person!`,
     },
     description: `A starter site with MDX ready (paginated) blog ready to style with Bulma.`,
-    siteUrl: `https://github.com/d1sc0/gatsby_bulma_blog`,
+    siteUrl: `https://zealous-albattani-4659c1.netlify.app/`,
     social: {
       twitter: `_disco`,
     },
@@ -95,7 +95,6 @@ module.exports = {
                   date: node.frontmatter.date,
                   url: site.siteMetadata.siteUrl + node.slug,
                   guid: site.siteMetadata.siteUrl + node.slug,
-                  custom_elements: [{ 'content:encoded': node.body }],
                 })
               })
             },
@@ -106,7 +105,6 @@ module.exports = {
                   slug
                   id
                   excerpt(pruneLength: 480)
-                  body
                   frontmatter {
                     date(formatString: "DD MMM YYYY")
                     title
