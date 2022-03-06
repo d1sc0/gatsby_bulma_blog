@@ -38,12 +38,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const posts = result.data.allMdx.nodes
 
   // Create blog-list pages
-  const postsPerPage = 6
+  const postsPerPage = 4
   const numPages = Math.ceil(posts.length / postsPerPage)
   Array.from({ length: numPages }).forEach((_, i) => {
     createPage({
       path: i === 0 ? `/posts` : `/posts/${i + 1}`,
-      component: path.resolve("./src/templates/post-list-template.js"),
+      component: path.resolve('./src/templates/post-list-template.js'),
       context: {
         limit: postsPerPage,
         skip: i * postsPerPage,

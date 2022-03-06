@@ -17,7 +17,7 @@ const Layout = ({ pageTitle, children }) => {
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="container is-max-widescreen">
           <div className="navbar-brand">
-            <Link className="navbar-item" to="/">
+            <Link className="navbar-item has-text-weight-bold is-size-4" to="/">
               {data.site.siteMetadata.siteTitle}
             </Link>
             <a

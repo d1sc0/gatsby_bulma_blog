@@ -1,59 +1,61 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
 import Layout from '../components/layout'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 import '../styles.scss'
 
-const PostList = ({ data, location, pageContext }) => {
+const PostList = ({ data, pageContext }) => {
   const posts = data.allMdx.nodes
   const { currentPage, numPages } = pageContext
   const isFirst = currentPage === 1
   const isLast = currentPage === numPages
-  const prevPage =
-    currentPage - 1 === 1 ? '/posts' : (currentPage - 1).toString()
+  const prevPage = currentPage - 1 === 1 ? '' : (currentPage - 1).toString()
   const nextPage = (currentPage + 1).toString()
-  return (
-    <Layout location={location}>
-      <ol style={{ listStyle: `none` }}>
-        {posts.map(post => {
-          const title = post.frontmatter.title || post.slug
 
-          return (
-            <li key={post.id}>
-              <article
-                className="post-list-item"
-                itemScope
-                itemType="http://schema.org/Article"
-              >
-                <header>
-                  <h2>
-                    <Link to={`/posts/${post.slug}`} itemProp="url">
-                      <span itemProp="headline">{title}</span>
-                    </Link>
-                  </h2>
-                  <small>{post.frontmatter.date}</small>
-                </header>
-                <section>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: post.frontmatter.subtitle || post.excerpt,
-                    }}
-                    itemProp="description"
-                  />
-                </section>
-              </article>
-            </li>
-          )
-        })}
-      </ol>
+  return (
+    <Layout pageTitle="Posts">
+      {posts.map(post => {
+        const title = post.frontmatter.title || post.slug
+        return (
+          <div className="box" key={post.id}>
+            <h2 className="is-size-4">
+              <Link to={`/posts/${post.slug}`}>{title}</Link>
+            </h2>
+            <small className="is-size-7">{post.frontmatter.date}</small>
+            <p className="py-2">{post.excerpt}</p>
+          </div>
+        )
+      })}
+
       {!isFirst && (
-        <Link to={prevPage} rel="prev">
-          ← Previous Page
-        </Link>
+        <nav
+          className="pagination py-4 is-pulled-left"
+          role="navigation"
+          aria-label="pagination"
+        >
+          <Link
+            to={`/posts/${prevPage}`}
+            className="pagination-previous"
+            rel="prev"
+          >
+            Previous Page
+          </Link>
+        </nav>
       )}
       {!isLast && (
-        <Link to={nextPage} rel="next">
-          Next Page →
-        </Link>
+        <nav
+          className="pagination py-4 is-pulled-right"
+          role="navigation"
+          aria-label="pagination"
+        >
+          <Link
+            to={`/posts/${nextPage}`}
+            className="pagination-next"
+            rel="next"
+          >
+            Next Page
+          </Link>
+        </nav>
       )}
     </Layout>
   )
@@ -71,7 +73,7 @@ export const postListQuery = graphql`
       nodes {
         slug
         id
-        excerpt
+        excerpt(pruneLength: 480)
         frontmatter {
           date(formatString: "DD MMM YYYY")
           title
