@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
 import '../styles.scss'
 
-const Layout = ({ pageTitle, children }) => {
+const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
     query {
       site {
@@ -23,11 +23,10 @@ const Layout = ({ pageTitle, children }) => {
             <Link className="navbar-item has-text-weight-bold is-size-4" to="/">
               {data.site.siteMetadata.siteTitle}
             </Link>
-            <a
+            <button
               onClick={() => {
                 setisActive(!isActive)
               }}
-              role="button"
               className={`navbar-burger ${isActive ? 'is-active' : ''}`}
               aria-label="menu"
               aria-expanded="false"
@@ -36,7 +35,7 @@ const Layout = ({ pageTitle, children }) => {
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
-            </a>
+            </button>
           </div>
           <div
             id="navbarBasic"
@@ -66,7 +65,7 @@ const Layout = ({ pageTitle, children }) => {
       <footer className="footer has-background-white">
         <div className="content has-text-centered">
           <strong>{data.site.siteMetadata.siteTitle}</strong> by{' '}
-          <a href="#">Stuart Mackenzie</a>.
+          <a href="https://twitter.com/_disco">Stuart Mackenzie</a>.
         </div>
       </footer>
     </div>
