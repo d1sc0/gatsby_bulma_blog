@@ -9,5 +9,6 @@
 - Tidy up page and template files - mostly done (single post left to do)
 - fix menu toggle on hamburger - done
 - Simple styling with Bulma - done
-- Create some placeholer pages and posts - done (need to add some images and videos to posts)
-- Check feeds rss etc on build
+- Create some placeholer pages and posts - done
+- Check feeds rss etc on build - done
+- chuck it on netlify to see if it works - https://zealous-albattani-4659c1.netlify.app/
