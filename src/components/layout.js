@@ -12,6 +12,9 @@ const Layout = ({ pageTitle, children }) => {
       }
     }
   `)
+
+  const [isActive, setisActive] = React.useState(false)
+
   return (
     <div>
       <nav className="navbar" role="navigation" aria-label="main navigation">
@@ -21,8 +24,11 @@ const Layout = ({ pageTitle, children }) => {
               {data.site.siteMetadata.siteTitle}
             </Link>
             <a
+              onClick={() => {
+                setisActive(!isActive)
+              }}
               role="button"
-              className="navbar-burger"
+              className={`navbar-burger ${isActive ? 'is-active' : ''}`}
               aria-label="menu"
               aria-expanded="false"
               data-target="navbarBasic"
@@ -32,7 +38,10 @@ const Layout = ({ pageTitle, children }) => {
               <span aria-hidden="true"></span>
             </a>
           </div>
-          <div id="navbarBasic" className="navbar-menu">
+          <div
+            id="navbarBasic"
+            className={`navbar-menu ${isActive ? 'is-active' : ''}`}
+          >
             <div className="navbar-end">
               <Link to="/posts" className="navbar-item">
                 Posts
