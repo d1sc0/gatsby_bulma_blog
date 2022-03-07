@@ -18,5 +18,5 @@
 - Update twitter cards etc in SEO component
 - Maybe move Bio component out of post template and use optionally in MDX posts?!
 - Style up a sample form component/page
-- Add font awesome maybe?!
+- Add font awesome maybe?! - done
 - Split out Layout Component to create Layout, Header/Nav and Footer?!
