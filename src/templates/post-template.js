@@ -20,7 +20,7 @@ const PostTemplate = ({ data }) => {
       <div className="block">
         <div className="is-size-7 pb-4">Posted: {post.frontmatter.date}</div>
         <div className="content">
-          <MDXRenderer>{post.body}</MDXRenderer>
+          <MDXRenderer frontmatter={post.frontmatter}>{post.body}</MDXRenderer>
         </div>
       </div>
       <Bio />
@@ -75,6 +75,12 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        tags
+        postImages {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
       }
     }
     previous: mdx(id: { eq: $previousPostId }) {

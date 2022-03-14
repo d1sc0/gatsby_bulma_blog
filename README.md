@@ -13,7 +13,9 @@
 - Check and update rss.xml once built etc - done
 - chuck it on netlify to see if it works - https://zealous-albattani-4659c1.netlify.app/
 - update analytcs to gtag plugin - done
+- pass frontmatter to MDXRendered so that gatsby image can be used in MDX - done
 - add react icons - done
+- add tags pages
 
 ## Maybe things for later (Roadmap)
 

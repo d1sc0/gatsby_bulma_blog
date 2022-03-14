@@ -2,10 +2,21 @@
 title: Corn on the cob
 date: 2021-01-27
 description: 'A description for SEO purposes'
+tags: ['weeknotes', 'digital', 'parkrun', family]
+postImages:
+  - '../images/post-images/shiprock.jpg'
 ---
+
+import { getImage, GatsbyImage } from 'gatsby-plugin-image'
 
 Lorem markdownum indiciine populo! Ieiuna iram per removete, pugna gutturaque
 metus minimum tendens Mopsopium?
+
+<GatsbyImage
+  alt="Just a boy scremaing into a microphone!"
+  image={getImage(props.frontmatter.postImages[0])}
+  className="py-3"
+/>
 
 1. Minus sed
 2. Tua ad parva si in in tempore

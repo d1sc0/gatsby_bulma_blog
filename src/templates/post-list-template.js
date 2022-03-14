@@ -81,6 +81,7 @@ export const postListQuery = graphql`
           date(formatString: "DD MMM YYYY")
           title
           description
+          tags
         }
       }
     }
