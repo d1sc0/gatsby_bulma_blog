@@ -15,7 +15,7 @@
 - update analytcs to gtag plugin - done
 - pass frontmatter to MDXRendered so that gatsby image can be used in MDX - done
 - add react icons - done
-- add tags pages
+- add tags pages - done
 
 ## Maybe things for later (Roadmap)
 
