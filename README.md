@@ -11,7 +11,6 @@
 - Simple styling with Bulma - done
 - Create some placeholer pages and posts - done
 - Check and update rss.xml once built etc - done
-- chuck it on netlify to see if it works - https://zealous-albattani-4659c1.netlify.app/
 - update analytcs to gtag plugin - done
 - pass frontmatter to MDXRendered so that gatsby image can be used in MDX - done
 - add react icons - done
@@ -19,7 +18,7 @@
 
 ## Maybe things for later (Roadmap)
 
+- put this template on firebase and setup deploys using github actions?!
 - Update twitter cards etc in SEO component
-- Maybe move Bio component out of post template and use optionally in MDX posts?!
 - Style up a sample form component/page
 - Split out Layout Component to create Layout, Header/Nav and Footer?!
