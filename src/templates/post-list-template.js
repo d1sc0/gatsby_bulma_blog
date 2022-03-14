@@ -2,7 +2,6 @@ import React from 'react'
 import { graphql, Link } from 'gatsby'
 import Seo from '../components/seo'
 import Layout from '../components/layout'
-//import { MDXRenderer } from 'gatsby-plugin-mdx'
 import '../styles.scss'
 
 const PostList = ({ data, pageContext }) => {
@@ -12,11 +11,11 @@ const PostList = ({ data, pageContext }) => {
   const isLast = currentPage === numPages
   const prevPage = currentPage - 1 === 1 ? '' : (currentPage - 1).toString()
   const nextPage = (currentPage + 1).toString()
-
+  const pageTitle = `Posts (${currentPage} of ${numPages})`
   return (
     <Layout>
-      <Seo title="Posts" />
-      <h1 className="title is-size-2">Posts</h1>
+      <Seo title={pageTitle} />
+      <h1 className="title is-size-2">{pageTitle}</h1>
       {posts.map(post => {
         const title = post.frontmatter.title || post.slug
         const tags = post.frontmatter.tags
