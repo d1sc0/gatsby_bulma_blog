@@ -8,6 +8,7 @@ import '../styles.scss'
 
 const PostTemplate = ({ data }) => {
   const post = data.mdx
+  const tags = post.frontmatter.tags
   const { previous, next } = data
 
   return (
@@ -18,7 +19,18 @@ const PostTemplate = ({ data }) => {
       />
       <h1 className="title is-size-2">{post.frontmatter.title}</h1>
       <div className="block">
-        <div className="is-size-7 pb-4">Posted: {post.frontmatter.date}</div>
+        <small className="is-size-7 mr-3">
+          Posted: {post.frontmatter.date}
+        </small>
+        <small className="is-size-7">
+          {tags.map(tag => {
+            return (
+              <span key={tag} className="tag is-light mr-2">
+                <Link to={`/tags/${tag}`}>{tag}</Link>
+              </span>
+            )
+          })}
+        </small>
         <div className="content">
           <MDXRenderer frontmatter={post.frontmatter}>{post.body}</MDXRenderer>
         </div>

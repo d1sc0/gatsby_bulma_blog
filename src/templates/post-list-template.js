@@ -25,12 +25,14 @@ const PostList = ({ data, pageContext }) => {
             <h2 className="is-size-4">
               <Link to={`/posts/${post.slug}`}>{title}</Link>
             </h2>
+            <small className="is-size-7 mr-3">
+              Posted: {post.frontmatter.date}
+            </small>
             <small className="is-size-7">
-              {post.frontmatter.date} - Tags:{' '}
               {tags.map(tag => {
                 return (
-                  <span key={tag}>
-                    <Link to={`/tags/${tag}`}>{tag}</Link>,{' '}
+                  <span key={tag} className="tag is-light mr-2">
+                    <Link to={`/tags/${tag}`}>{tag}</Link>
                   </span>
                 )
               })}

@@ -7,12 +7,12 @@ import '../styles.scss'
 
 const PostsByTagList = ({ data, pageContext }) => {
   const posts = data.allMdx.nodes
-  const { tagPage, currentPage, numTagPages } = pageContext
+  const { tagName, currentPage, numTagPages } = pageContext
   const isFirst = currentPage === 1
   const isLast = currentPage === numTagPages
   const prevPage = currentPage - 1 === 1 ? '' : (currentPage - 1).toString()
   const nextPage = (currentPage + 1).toString()
-  const pageTitle = `Tag: ${tagPage}`
+  const pageTitle = `Tag: ${tagName} (${currentPage} of ${numTagPages})`
   return (
     <Layout>
       <Seo title={pageTitle} />
@@ -25,12 +25,14 @@ const PostsByTagList = ({ data, pageContext }) => {
             <h2 className="is-size-4">
               <Link to={`/posts/${post.slug}`}>{title}</Link>
             </h2>
+            <small className="is-size-7 mr-3">
+              Posted: {post.frontmatter.date}
+            </small>
             <small className="is-size-7">
-              {post.frontmatter.date} - Tags:{' '}
               {tags.map(tag => {
                 return (
-                  <span key={tag}>
-                    <Link to={`/tags/${tag}`}>{tag}</Link>,{' '}
+                  <span key={tag} className="tag is-light mr-2">
+                    <Link to={`/tags/${tag}`}>{tag}</Link>
                   </span>
                 )
               })}
@@ -48,7 +50,7 @@ const PostsByTagList = ({ data, pageContext }) => {
           aria-label="pagination"
         >
           <Link
-            to={`/tags/${tagPage}/${prevPage}`}
+            to={`/tags/${tagName}/${prevPage}`}
             className="pagination-previous"
             rel="prev"
           >
@@ -63,7 +65,7 @@ const PostsByTagList = ({ data, pageContext }) => {
           aria-label="pagination"
         >
           <Link
-            to={`/tags/${tagPage}/${nextPage}`}
+            to={`/tags/${tagName}/${nextPage}`}
             className="pagination-next"
             rel="next"
           >
@@ -78,10 +80,10 @@ const PostsByTagList = ({ data, pageContext }) => {
 export default PostsByTagList
 
 export const PostsByTagListQuery = graphql`
-  query PostsByTagListQuery($tagPage: String, $skip: Int!, $limit: Int!) {
+  query PostsByTagListQuery($tagName: String, $skip: Int!, $limit: Int!) {
     allMdx(
       sort: { order: DESC, fields: frontmatter___date }
-      filter: { frontmatter: { tags: { in: [$tagPage] } } }
+      filter: { frontmatter: { tags: { in: [$tagName] } } }
       limit: $limit
       skip: $skip
     ) {
