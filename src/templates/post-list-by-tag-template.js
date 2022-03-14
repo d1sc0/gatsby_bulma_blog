@@ -5,21 +5,21 @@ import Layout from '../components/layout'
 //import { MDXRenderer } from 'gatsby-plugin-mdx'
 import '../styles.scss'
 
-const PostList = ({ data, pageContext }) => {
+const PostsByTagList = ({ data, pageContext }) => {
   const posts = data.allMdx.nodes
-  const { currentPage, numPages } = pageContext
+  const { tagPage, currentPage, numTagPages } = pageContext
   const isFirst = currentPage === 1
-  const isLast = currentPage === numPages
+  const isLast = currentPage === numTagPages
   const prevPage = currentPage - 1 === 1 ? '' : (currentPage - 1).toString()
   const nextPage = (currentPage + 1).toString()
-
+  const pageTitle = `Tag: ${tagPage}`
   return (
     <Layout>
-      <Seo title="Posts" />
-      <h1 className="title is-size-2">Posts</h1>
+      <Seo title={pageTitle} />
+      <h1 className="title is-size-2">{pageTitle}</h1>
       {posts.map(post => {
-        const title = post.frontmatter.title || post.slug
         const tags = post.frontmatter.tags
+        const title = post.frontmatter.title || post.slug
         return (
           <div className="block" key={post.id}>
             <h2 className="is-size-4">
@@ -35,6 +35,7 @@ const PostList = ({ data, pageContext }) => {
                 )
               })}
             </small>
+
             <p className="py-2">{post.excerpt}</p>
           </div>
         )
@@ -47,7 +48,7 @@ const PostList = ({ data, pageContext }) => {
           aria-label="pagination"
         >
           <Link
-            to={`/posts/${prevPage}`}
+            to={`/tags/${tagPage}/${prevPage}`}
             className="pagination-previous"
             rel="prev"
           >
@@ -62,7 +63,7 @@ const PostList = ({ data, pageContext }) => {
           aria-label="pagination"
         >
           <Link
-            to={`/posts/${nextPage}`}
+            to={`/tags/${tagPage}/${nextPage}`}
             className="pagination-next"
             rel="next"
           >
@@ -74,12 +75,13 @@ const PostList = ({ data, pageContext }) => {
   )
 }
 
-export default PostList
+export default PostsByTagList
 
-export const postListQuery = graphql`
-  query postListQuery($skip: Int!, $limit: Int!) {
+export const PostsByTagListQuery = graphql`
+  query PostsByTagListQuery($tagPage: String, $skip: Int!, $limit: Int!) {
     allMdx(
       sort: { order: DESC, fields: frontmatter___date }
+      filter: { frontmatter: { tags: { in: [$tagPage] } } }
       limit: $limit
       skip: $skip
     ) {

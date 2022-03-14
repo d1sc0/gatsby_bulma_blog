@@ -19,8 +19,15 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             frontmatter {
               date(formatString: "DD MMM YYYY")
               title
+              tags
               description
             }
+          }
+        }
+        tagsGroup: allMdx {
+          group(field: frontmatter___tags) {
+            fieldValue
+            totalCount
           }
         }
       }
@@ -36,9 +43,31 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 
   const posts = result.data.allMdx.nodes
+  const tagPosts = result.data.tagsGroup.group
+  const postsPerPage = 5
+
+  //create tage list pages
+  tagPosts.forEach(tag => {
+    const numTagPages = Math.ceil(tag.totalCount / postsPerPage)
+    Array.from({ length: numTagPages }).forEach((_, i) => {
+      createPage({
+        path:
+          i === 0
+            ? `/tags/${tag.fieldValue}`
+            : `/tags/${tag.fieldValue}/${i + 1}`,
+        component: path.resolve('./src/templates/post-list-by-tag-template.js'),
+        context: {
+          tagPage: tag.fieldValue,
+          limit: postsPerPage,
+          skip: i * postsPerPage,
+          numTagPages,
+          currentPage: i + 1,
+        },
+      })
+    })
+  })
 
   // Create blog-list pages
-  const postsPerPage = 4
   const numPages = Math.ceil(posts.length / postsPerPage)
   Array.from({ length: numPages }).forEach((_, i) => {
     createPage({
