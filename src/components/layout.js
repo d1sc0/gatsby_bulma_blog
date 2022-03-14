@@ -1,8 +1,7 @@
 import * as React from 'react'
 import { Link, useStaticQuery, graphql } from 'gatsby'
 import '../styles.scss'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faRss } from '@fortawesome/free-solid-svg-icons'
+import { FaRss } from 'react-icons/fa'
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -54,7 +53,7 @@ const Layout = ({ children }) => {
                 Contact
               </Link>
               <Link to="/rss.xml" className="navbar-item">
-                <FontAwesomeIcon icon={faRss} />
+                <FaRss />
               </Link>
             </div>
           </div>

@@ -12,11 +12,12 @@
 - Create some placeholer pages and posts - done
 - Check and update rss.xml once built etc - done
 - chuck it on netlify to see if it works - https://zealous-albattani-4659c1.netlify.app/
+- update analytcs to gtag plugin - done
+- add react icons - done
 
 ## Maybe things for later (Roadmap)
 
 - Update twitter cards etc in SEO component
 - Maybe move Bio component out of post template and use optionally in MDX posts?!
 - Style up a sample form component/page
-- Add font awesome maybe?! - done
 - Split out Layout Component to create Layout, Header/Nav and Footer?!
