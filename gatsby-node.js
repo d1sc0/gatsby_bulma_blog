@@ -57,7 +57,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             : `/tags/${tag.fieldValue}/${i + 1}`,
         component: path.resolve('./src/templates/post-list-by-tag-template.js'),
         context: {
-          tagPage: tag.fieldValue,
+          tagName: tag.fieldValue,
           limit: postsPerPage,
           skip: i * postsPerPage,
           numTagPages,
@@ -83,7 +83,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   })
 
   // Create blog posts
-
   if (posts.length > 0) {
     posts.forEach((post, index) => {
       const previousPostId = index === 0 ? null : posts[index - 1].id
